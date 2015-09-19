@@ -1,4 +1,4 @@
-lista = [['p1',3,2],['p2',4,0],['p3',3,1]]
+lista = [['p1',3,2],['p2',5,0],['p3',2,1]]
 
 
 def obtenerPrimeraEjecucion(lista):
@@ -16,7 +16,16 @@ def restarCPU(proceso):
 	proceso[1] = proceso[1] -1
 	return proceso
 
-proceso =  obtenerPrimeraEjecucion(lista)
-print restarCPU(proceso)
+def comparar(proceso, lista):
+	for x in lista:
+		if proceso[1] > x[1]:
+			return x
+		else:
+			return proceso
 
+proceso =  obtenerPrimeraEjecucion(lista)
+print proceso
+print restarCPU(proceso)
+remplazo = comparar(proceso,lista)
+print remplazo
 

@@ -1,17 +1,18 @@
-lista = [['p1',3,1],['p2',5,0],['p3',2,3]]
-#lista = [['p1',3,0],['p2',1,2],['p3',2,3]]
+#lista = [['p1',3,1],['p2',5,0],['p3',2,3]]
+lista = [['p1',3,0],['p2',1,1],['p3',2,2]]
 instanciasDeTiempo = 0
 
 def obtenerPrimeraEjecucion(lista):
 	i = 1
 	for x in lista:
 		if i == 1:
-			llegada = x[2]
+			primerProcesoAIngresar = x
 			i = i + 1
 		else:
-			if x[2] < llegada:
-				llegada = x[2]
-				return x 
+			if x[2] < primerProcesoAIngresar[2]:
+				primerProcesoAIngresar = x
+					
+	return primerProcesoAIngresar 
 
 def restarCPU(proceso):
 	proceso[1] = proceso[1] -1
@@ -46,10 +47,17 @@ def comparar(proceso, lista, instanciasDeTiempo):
 			
 		return siguienteProceso
 
+def obtenerCantidadDeCpuTotal(lista):
+	cantidad = 0
+	for x in lista:
+		cantidad = cantidad + x[1]
+
+	return cantidad
 
 proceso =  obtenerPrimeraEjecucion(lista)
-for x in range(10):
-	print proceso, instanciasDeTiempo
+cantidadCpuTotal = obtenerCantidadDeCpuTotal(lista)
+for x in range(cantidadCpuTotal):
+	#print proceso, instanciasDeTiempo
 	if proceso == lista[lista.index(proceso)] and len(proceso) == 3:
 		proceso.append(1)
 		restarCPU(proceso)
